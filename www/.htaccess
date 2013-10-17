@@ -11,8 +11,8 @@ RewriteRule ^.htaccess.bak$ - [F]
 # ???
 Options +FollowSymLinks
 
-RewriteRule ^places.(js|geojson) ../src/php/places.php?$1 [L]
-RewriteRule ^directions\/?$ ../src/php/directions.php [L]
+RewriteRule ^places.(js|geojson) php/places.php?$1 [L]
+RewriteRule ^directions\/?$ php/directions.php [L]
 
 # PHP local settings
 
