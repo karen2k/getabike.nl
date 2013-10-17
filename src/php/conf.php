@@ -22,13 +22,13 @@ switch($_SERVER['HTTP_HOST']){
 	case '127.0.0.1':
 	case 'localhost':
 	case 'getabike.dev':
-	default:
 		define('DB_INF_HOST', '127.0.0.1');
 		define('DB_INF_USER', 'root');
 		define('DB_INF_PASSWORD', 'karen');
 		define('DB_INF_NAME', 'getabike');
 		define('DB_INF_COLLATION', 'utf8');
 		break;
+	default:
 	case 'getabike.on-i.ru':
 		define('DB_INF_HOST', 'localhost');
 		define('DB_INF_USER', 'getabike');
