@@ -30,7 +30,7 @@ switch($_SERVER['HTTP_HOST']){
 		define('DB_INF_COLLATION', 'utf8');
 		break;
 	case 'getabike.on-i.ru':
-		define('DB_INF_HOST', '127.0.0.1');
+		define('DB_INF_HOST', 'localhost');
 		define('DB_INF_USER', 'getabike');
 		define('DB_INF_PASSWORD', 'KCWZKFyc9VxEhQaY');
 		define('DB_INF_NAME', 'getabike');
