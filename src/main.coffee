@@ -6,11 +6,11 @@ meMarker = null
 
 if navigator.geolocation
 	map.on 'locationfound', (e) =>
-		e.latlng.lat = 52.373
-		e.latlng.lng = 4.893
-		map.setView [e.latlng.lat, e.latlng.lng], 16
-		console.log e.bounds
-		# map.fitBounds e.bounds
+		# e.latlng.lat = 52.373
+		# e.latlng.lng = 4.893
+		# map.setView [e.latlng.lat, e.latlng.lng], 16
+		# console.log e.bounds
+		map.fitBounds e.bounds
 
 		meMarker = L.marker(new L.LatLng(e.latlng.lat, e.latlng.lng),
 			icon: L.mapbox.marker.icon
