@@ -1,3 +1,7 @@
+DAM_SQUARE = lat: 52.373, lng: 4.893
+DEFAULT_MAGNIFICATION = 14
+MAX_DISTANCE = 12 # km
+
 map = L.mapbox.map 'map', 'karenishe.map-pxxvu0dq',
 	detectRetina: true
 	retinaVersion: 'karenishe.map-2s2oc75l'
@@ -10,28 +14,24 @@ if navigator.geolocation
 	map.on 'locationfound', (e) =>
 
 		# if not too far from Amsterdam
-		if Math.abs(e.latitude - 52.373) < .1 and Math.abs(e.longitude - 4.893) < .1
+		# if Math.abs(e.latitude - 52.373) < .1 and Math.abs(e.longitude - 4.893) < .1
+		if coordinatesInAms(e.latlng)
 			# set map to bounds
 			map.fitBounds e.bounds
-
 			# locate user position marker
-			meMarker = L.marker(new L.LatLng(e.latlng.lat, e.latlng.lng),
-				icon: L.mapbox.marker.icon
-					'marker-color': 'bb0000'
-					'marker-symbol': 'star-stroked'
-					"marker-size": 'large'
-				draggable: true
-			)
-			meMarker.addTo map
+			centerMap e.latlng
+		else
+			centerMap DAM_SQUARE
 
 	# if browser can't locate user
 	map.on 'locationerror', () =>
+		centerMap DAM_SQUARE
 		# alert 'Enable geolocation service for your browser please'
 
 	map.locate()
 else
 	# set map to Amsterdam
-	map.setView [52.373, 4.893], 14
+	map.setView [DAM_SQUARE.lat, DAM_SQUARE.lng], DEFAULT_MAGNIFICATION
 
 
 L.mapbox.markerLayer()
@@ -50,7 +50,47 @@ L.mapbox.markerLayer()
 				closeButton: true
 				maxWidth: 200
 	.loadURL('markers.geojson')
-	
+
+
+# Old-fashined great-circle calculator based off of
+# the Soviet spheroid formulae. Totally certain you can find this
+# elsewhere and plug it in, but I already had it in my attic
+GreatCircle =
+  deg2rad: (deg) -> (deg * Math.PI / 180)
+  rad2deg: (rad) -> (rad * 180 / Math.PI)
+  R_KAVRAISKOGO: 6373 # in KM
+  NINE_MINUTES_IN_RAD: 0.00261799388
+
+  # Convert geo lat on the geoid to latitude on the Kavraisky spheroid
+  latGeoToSpherical: (thetaGeoDeg) ->
+    theta = @deg2rad(thetaGeoDeg)
+    theta - (@NINE_MINUTES_IN_RAD * (Math.sin(2*theta)))
+
+  distance : (lat1, lon1, lat2, lon2) ->
+    lat1 = @latGeoToSpherical(lat1)
+    lon1 = @deg2rad(lon1)
+    lat2 = @latGeoToSpherical(lat2)
+    lon2 = @deg2rad(lon2)
+    deltaL = lon1 - lon2
+    cosDist = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(deltaL)
+    Math.round(Math.acos(cosDist) * @R_KAVRAISKOGO)
+
+coordinatesInAms = (latlon)->
+	distance = GreatCircle.distance(latlon.lat, latlon.lng, DAM_SQUARE.lat, DAM_SQUARE.lng)
+	# console.debug "#{distance}km from Dam Square ;-)"
+	distance < MAX_DISTANCE
+
+centerMap = (latlon) =>
+	meMarker = L.marker(new L.LatLng(latlon.lat, latlon.lng),
+		icon: L.mapbox.marker.icon
+			'marker-color': 'bb0000'
+			'marker-symbol': 'star-stroked'
+			"marker-size": 'large'
+		draggable: true
+	)
+	meMarker.addTo map
+
+
 
 # $(document).on 'click', 'a.route', (e) =>
 # 	$me = $(e.target)
