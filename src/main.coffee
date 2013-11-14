@@ -42,10 +42,12 @@ L.mapbox.markerLayer()
 				"<h1>#{marker.feature.properties.title}</h1>" +
 				(if marker.feature.properties.address then "<p class='address'>#{marker.feature.properties.address}</p>" else '') +
 				(if marker.feature.properties.phone then "<p class='phone'>#{marker.feature.properties.phone}</p>" else '') +
-				(if marker.feature.properties.url then "<a href='http://#{marker.feature.properties.url}' target='_blank' class='url'>www.#{marker.feature.properties.url}</p>" else '')
+				(if marker.feature.properties.url then "<a href='http://#{marker.feature.properties.url}' target='_blank' class='url'>www.#{marker.feature.properties.url}</a>" else '') +
+				"<iframe src='marker_counter.html?marker_id=#{marker.feature.properties.id}' class='iframe'></iframe>"
 				# + "<a href='#' class='route' data-lat='#{marker.feature.geometry.coordinates[1]}' data-lng='#{marker.feature.geometry.coordinates[0]}'>Walking route</a>"
+			# marker.
 			marker.bindPopup content,
-				closeButton: false
+				closeButton: true
 				maxWidth: 200
 	.loadURL('markers.geojson')
 	

@@ -35,9 +35,9 @@
     return e.target.eachLayer(function(marker) {
       var content;
 
-      content = ("<h1>" + marker.feature.properties.title + "</h1>") + (marker.feature.properties.address ? "<p class='address'>" + marker.feature.properties.address + "</p>" : '') + (marker.feature.properties.phone ? "<p class='phone'>" + marker.feature.properties.phone + "</p>" : '') + (marker.feature.properties.url ? "<a href='http://" + marker.feature.properties.url + "' target='_blank' class='url'>www." + marker.feature.properties.url + "</p>" : '');
+      content = ("<h1>" + marker.feature.properties.title + "</h1>") + (marker.feature.properties.address ? "<p class='address'>" + marker.feature.properties.address + "</p>" : '') + (marker.feature.properties.phone ? "<p class='phone'>" + marker.feature.properties.phone + "</p>" : '') + (marker.feature.properties.url ? "<a href='http://" + marker.feature.properties.url + "' target='_blank' class='url'>www." + marker.feature.properties.url + "</a>" : '') + ("<iframe src='marker_counter.html?marker_id=" + marker.feature.properties.id + "' class='iframe'></iframe>");
       return marker.bindPopup(content, {
-        closeButton: false,
+        closeButton: true,
         maxWidth: 200
       });
     });

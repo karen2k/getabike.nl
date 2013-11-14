@@ -23,6 +23,7 @@ if(isset($_GET['geojson'])){
 				"coordinates":["%%lng%%","%%lat%%"]
 			},
 			"properties":{
+				"id":"%%id%%",
 				"title":"%%title%%",
 				"address":"%%address%%",
 				"phone":"%%phone%%",
@@ -42,6 +43,7 @@ if($places)
 	foreach($places as &$place){
 		$place = str_replace(
 			array(
+				'%%id%%',
 				'%%lat%%',
 				'%%lng%%',
 				'%%title%%',
@@ -50,6 +52,7 @@ if($places)
 				'%%url%%'
 			),
 			array(
+				$place['id'],
 				$place['lat'],
 				$place['lng'],
 				$place['title'],
@@ -63,6 +66,6 @@ if($places)
 
 $all = str_replace('%%markers%%', implode(',', $places), $_all);
 
-// print('<pre>');
+print('<pre>');
 print($all);
-// print('</pre>');
+print('</pre>');
