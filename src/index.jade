@@ -47,6 +47,8 @@ html
 			{{#if url}}
 				<a href='http://{{url}}' target='_blank' class='url'>{{url}}</a>
 			{{/if}}
+			
+			<iframe src='marker_counter.html?marker_id={{id}}' class='iframe'></iframe>
 
 		+js('//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js')
 		+js('http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js')
