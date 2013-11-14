@@ -1,0 +1,35 @@
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Enable mod_rewrite for /public_html/
+RewriteEngine On
+# Hide folders without index files
+Options All -Indexes
+# Hide .htaccess file
+RewriteRule ^.htaccess$ - [F]
+RewriteRule ^.htaccess.bak$ - [F]
+# ???
+Options +FollowSymLinks
+
+RewriteRule ^places.(js|geojson) php/places.php?$1 [L]
+RewriteRule ^directions\/?$ php/directions.php [L]
+
+# PHP local settings
+
+# Error reporting ON
+php_flag display_errors on
+
+# Error reporting type ()
+# Now php script sets this parameter by itself
+# php_value error_reporting 2047
+
+# If wrong in httpd.conf
+# php_flag register_globals off
+
+# Set max post query size
+php_value post_max_size 200M
+php_value upload_max_filesize 200M
+
+# Set php scripts max execution time
+# php_value max_execution_time 10000
+
