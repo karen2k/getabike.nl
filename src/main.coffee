@@ -6,68 +6,32 @@ meMarker = null
 
 if navigator.geolocation
 	map.on 'locationfound', (e) =>
-		# e.latlng.lat = 52.373
-		# e.latlng.lng = 4.893
-		# map.setView [e.latlng.lat, e.latlng.lng], 16
-		# console.log e.bounds
-		map.fitBounds e.bounds
 
-		meMarker = L.marker(new L.LatLng(e.latlng.lat, e.latlng.lng),
-			icon: L.mapbox.marker.icon
-				'marker-color': 'bb0000'
-				'marker-symbol': 'star-stroked'
-				"marker-size": 'large'
-			draggable: true
-		)
-		meMarker.addTo map
-		# 
-		# L.mapbox.markerLayer()
-		# 	.addTo(map)
-		# 	.setGeoJSON
-		# 		type:'Feature'
-		# 		geometry:
-		# 			type: 'Point'
-		# 			coordinates: [e.latlng.lng, e.latlng.lat]
-		# 		properties:
-		# 			'marker-color': '#b00'
-		# 			'marker-symbol': 'star-stroked'
-		# 			"marker-size": 'large'
-		
-		# qq = map.markerLayer.setGeoJSON
-		# 		type:'Feature'
-		# 		geometry:
-		# 			type: 'Point'
-		# 			coordinates: [e.latlng.lng, e.latlng.lat]
-		# 		properties:
-		# 			'marker-color': '#b00'
-		# 			'marker-symbol': 'star-stroked'
-		# 			"marker-size": 'large'
-		# 	# .on 'ready', (e) =>
-		# 	# 	console.log e
-		# 	# 	# marker.option.dragging = true
-		# console.log qq
+		# if not too far from Amsterdam
+		if Math.abs(e.latitude - 52.373) < .1 and Math.abs(e.longitude - 4.893) < .1
+			# set map to bounds
+			map.fitBounds e.bounds
+
+			# locate user position marker
+			meMarker = L.marker(new L.LatLng(e.latlng.lat, e.latlng.lng),
+				icon: L.mapbox.marker.icon
+					'marker-color': 'bb0000'
+					'marker-symbol': 'star-stroked'
+					"marker-size": 'large'
+				draggable: true
+			)
+			meMarker.addTo map
+
+	# if browser can't locate user
 	map.on 'locationerror', () =>
-		alert 'Enable geolocation service for your browser please'
+		# alert 'Enable geolocation service for your browser please'
 
 	map.locate()
 else
+	# set map to Amsterdam
 	map.setView [52.373, 4.893], 14
 
-# if 0
-# 	markers = new L.MarkerClusterGroup()
-# 
-# 	for (var i = 0; i < addressPoints.length; i++) {
-# 		var a = addressPoints[i];
-# 		var title = a[2];
-# 		var marker = L.marker(new L.LatLng(a[0], a[1]), {
-# 			title: title
-# 		});
-# 		marker.bindPopup(title);
-# 		markers.addLayer(marker);
-# 	}
-# 
-# 	map.addLayer(markers);
-# else
+
 L.mapbox.markerLayer()
 	.addTo(map)
 	.on 'ready', (e) ->
@@ -81,7 +45,7 @@ L.mapbox.markerLayer()
 			marker.bindPopup content,
 				closeButton: false
 				maxWidth: 200
-	.loadURL('places.geojson')
+	.loadURL('markers.geojson')
 	
 
 # $(document).on 'click', 'a.route', (e) =>

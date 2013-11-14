@@ -12,20 +12,20 @@
 
   if (navigator.geolocation) {
     map.on('locationfound', function(e) {
-      map.fitBounds(e.bounds);
-      meMarker = L.marker(new L.LatLng(e.latlng.lat, e.latlng.lng), {
-        icon: L.mapbox.marker.icon({
-          'marker-color': 'bb0000',
-          'marker-symbol': 'star-stroked',
-          "marker-size": 'large'
-        }),
-        draggable: true
-      });
-      return meMarker.addTo(map);
+      if (Math.abs(e.latitude - 52.373) < .1 && Math.abs(e.longitude - 4.893) < .1) {
+        map.fitBounds(e.bounds);
+        meMarker = L.marker(new L.LatLng(e.latlng.lat, e.latlng.lng), {
+          icon: L.mapbox.marker.icon({
+            'marker-color': 'bb0000',
+            'marker-symbol': 'star-stroked',
+            "marker-size": 'large'
+          }),
+          draggable: true
+        });
+        return meMarker.addTo(map);
+      }
     });
-    map.on('locationerror', function() {
-      return alert('Enable geolocation service for your browser please');
-    });
+    map.on('locationerror', function() {});
     map.locate();
   } else {
     map.setView([52.373, 4.893], 14);
@@ -41,6 +41,6 @@
         maxWidth: 200
       });
     });
-  }).loadURL('places.geojson');
+  }).loadURL('markers.geojson');
 
 }).call(this);
