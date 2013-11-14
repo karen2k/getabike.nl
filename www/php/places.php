@@ -8,8 +8,30 @@ $db = new DataBase(defined('DB_COLLATION') ? DB_COLLATION : false, DB_INF_NAME, 
 $places = $db->getRow('places', array('id', 'title', 'address', 'url', 'lat', 'lng', 'phone'), '1', 'AND', 'id', 'ASC', '', array(), true);
 
 if(isset($_GET['geojson'])){
-	$_all = '{"type":"FeatureCollection","features":[%%markers%%]}';
-	$_marker = '{"type":"Feature","geometry":{"type":"Point", "coordinates": ["%%lng%%","%%lat%%"]},"properties":{"title":"%%title%%","address":"%%address%%","phone":"%%phone%%","url":"%%url%%","marker-size":"large","marker-color":"#000","marker-symbol":"bicycle"}}';
+	$_all = 
+'{
+	"type":"FeatureCollection",
+	"features":[%%markers%%
+	]
+}';
+	$_marker =
+'
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["%%lng%%","%%lat%%"]
+			},
+			"properties":{
+				"title":"%%title%%",
+				"address":"%%address%%",
+				"phone":"%%phone%%",
+				"url":"%%url%%",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		}';
 }else if(isset($_GET['js'])){
 	$_all = 'var addressPoints = [%%markers%%];';
 	$_marker = '[%%lat%%, %%lng%%, "%%content%%"]';
@@ -41,4 +63,6 @@ if($places)
 
 $all = str_replace('%%markers%%', implode(',', $places), $_all);
 
+// print('<pre>');
 print($all);
+// print('</pre>');

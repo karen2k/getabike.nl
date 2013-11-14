@@ -1,0 +1,581 @@
+{
+	"type":"FeatureCollection",
+	"features":[
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8962216","52.3566853"]
+			},
+			"properties":{
+				"title":"Ajaxbike",
+				"address":"Gerard Doustraat 153 1073 VW Amsterdam",
+				"phone":"0615684831,0659054296",
+				"url":"ajaxbike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8761253","52.3681938"]
+			},
+			"properties":{
+				"title":"Bike4u",
+				"address":"Kinkerstraat 1A 1053 DB Amsterdam",
+				"phone":"0202238548,0031621567498",
+				"url":"rentbike4u.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8813035","52.3750654"]
+			},
+			"properties":{
+				"title":"Bike City",
+				"address":"Bloemgracht 68-70 1015 TL Amsterdam",
+				"phone":"+31 (0)20 6263721",
+				"url":"bikecity.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.9186686","52.3467004"]
+			},
+			"properties":{
+				"title":"Amstel Fietspoint",
+				"address":"Julianaplein 1 1097 DN Amsterdam",
+				"phone":"020-6923584",
+				"url":"amstelfietspoint.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.9142856","52.3778973"]
+			},
+			"properties":{
+				"title":"Amster Bike",
+				"address":"Piet Heinkade 11A 1019 BR AMSTERDAM",
+				"phone":"020-4199063",
+				"url":"amsterbike.eu",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8834172","52.3622212"]
+			},
+			"properties":{
+				"title":"Mac Bike (Leidseplein)",
+				"address":"Weteringschans 2 1017 SG AMSTERDAM",
+				"phone":"+31 (0)20 5287688",
+				"url":"macbike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8765947","52.3705767"]
+			},
+			"properties":{
+				"title":"Mac Bike (Marnixstraat)",
+				"address":"Marnixstraat 220 1016 TL Amsterdam",
+				"phone":"+31 (0)20 6266964",
+				"url":"macbike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.9015078","52.3779804"]
+			},
+			"properties":{
+				"title":"Mac Bike (Centraal Station East)",
+				"address":"Stationsplein 5 1012 AB Amsterdam",
+				"phone":"",
+				"url":"macbike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.9015078","52.3779804"]
+			},
+			"properties":{
+				"title":"Mac Bike (Centraal Station East)",
+				"address":"Stationsplein 5 1012 AB Amsterdam",
+				"phone":"",
+				"url":"macbike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.9097163","52.3752897"]
+			},
+			"properties":{
+				"title":"Mac Bike (Oosterdokkade)",
+				"address":"Oosterdokskade 149 1011 DL Amsterdam",
+				"phone":"+31 (0)20 3308443",
+				"url":"macbike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.9024682","52.3671014"]
+			},
+			"properties":{
+				"title":"Mac Bike (Waterlooplein)",
+				"address":"Waterlooplein 199 1011 PG Amsterdam",
+				"phone":"+31 (0)20 4287005",
+				"url":"macbike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8959017","52.3749644"]
+			},
+			"properties":{
+				"title":"Holland Rent-a-bike BeursstallingViewOverviewMap",
+				"address":" Damrak 247 1012 ZJ AMSTERDAM",
+				"phone":"020-6223207",
+				"url":"",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8933725","52.3752684"]
+			},
+			"properties":{
+				"title":"Discount Bike RentalViewOverviewMap",
+				"address":"Nieuwe Nieuwstraat 19D 1012 NG Amsterdam",
+				"phone":"020-4284040",
+				"url":"discountbikerental.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.9069712","52.3776311"]
+			},
+			"properties":{
+				"title":"Star Bikes",
+				"address":"De Ruyterkade 127, 1011 AC Amsterdam",
+				"phone":"0031(0)206203215",
+				"url":"starbikesrental.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8879486","52.363697"]
+			},
+			"properties":{
+				"title":"Mike's Bike Tours",
+				"address":"Kerkstraat 134 H 1017 GP Amsterdam",
+				"phone":"+31(0)20 622 7970",
+				"url":"mikesbiketoursamsterdam.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8939943","52.3761338"]
+			},
+			"properties":{
+				"title":"Yellow Bike (Nieuwezijds Kolk)",
+				"address":"Nieuwezijds Kolk 29",
+				"phone":"020 6206940",
+				"url":"yellowbike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8993226","52.3756516"]
+			},
+			"properties":{
+				"title":"Yellow Bike (Oudezijds Armsteeg)",
+				"address":"Oudezijds Armsteeg 22",
+				"phone":"020 6206940",
+				"url":"yellowbike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8810191","52.3803899"]
+			},
+			"properties":{
+				"title":"WorkCycles (Jordaan)",
+				"address":"Lijnbaansgracht 32B-Hs 1015 GP Amsterdam",
+				"phone":"+31 20 522 6002",
+				"url":"workcycles.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.9381586","52.3684094"]
+			},
+			"properties":{
+				"title":"WorkCycles (Veemarkt/Zeeburg)",
+				"address":"Veemarkt 150A 1019 DE Amsterdam",
+				"phone":"+31 20 689 7879",
+				"url":"workcycles.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8946125","52.372038"]
+			},
+			"properties":{
+				"title":"Damstraat Rent-A-Bike",
+				"address":"Damstraat 20 – 22 1012 HK Amsterdam",
+				"phone":"+31 20 625 50 29",
+				"url":"bikes.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8967811","52.3724009"]
+			},
+			"properties":{
+				"title":"Orangebike (Old City Centre)",
+				"address":"Oudezijds Voorburgwal 147 1012ES Amsterdam",
+				"phone":"+31 (0)20 3541781",
+				"url":"orange-bike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.9056087","52.3749593"]
+			},
+			"properties":{
+				"title":"Orangebike (Centraal Station)",
+				"address":"Prinshendrikkade 506 1011 TE  Amsterdam",
+				"phone":"+31 (0)20 3541781",
+				"url":"orange-bike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8914895","52.3747744"]
+			},
+			"properties":{
+				"title":"Black Bikes (City Centre)",
+				"address":"Nieuwezijds Voorburgwal 146 1012 SJ Amsterdam",
+				"phone":"020 670 8531",
+				"url":"black-bikes.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8866345","52.3620282"]
+			},
+			"properties":{
+				"title":"Black Bikes (Leidseplein‎)",
+				"address":"Lijnbaansgracht 283 1017 RM Amsterdam",
+				"phone":"020 670 8531",
+				"url":"black-bikes.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8572718","52.351608"]
+			},
+			"properties":{
+				"title":"Black Bikes (Koniginneweg)",
+				"address":"Koniginneweg 267-269 1075 CW Amsterdam",
+				"phone":"020 670 8531",
+				"url":"black-bikes.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8954945","52.3441381"]
+			},
+			"properties":{
+				"title":"Black Bikes (RAI)",
+				"address":"Maasstraat 106 1078 HN Amsterdam",
+				"phone":"020 670 8531",
+				"url":"black-bikes.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8860947","52.3630235"]
+			},
+			"properties":{
+				"title":"Green Budget Bikes (Leidseplein)",
+				"address":"Lange Leidsedwarsstraat 103 1017 NJ Amsterdam",
+				"phone":"+31 (0)20-341-3535",
+				"url":"greenbudgetbikes.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8918527","52.374597"]
+			},
+			"properties":{
+				"title":"Green Budget Bikes (Dam)",
+				"address":"Nieuwezijds Voorburgwal 101 1012 RG Amsterdam",
+				"phone":"+31 (0)20-341-7545",
+				"url":"greenbudgetbikes.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8864513","52.3734694"]
+			},
+			"properties":{
+				"title":"Green Budget Bikes (Anne Frank House and Westerchurch)",
+				"address":"Raadhuisstraat 29  1016 DC Amsterdam",
+				"phone":"+31 (0)20 370 5740",
+				"url":"greenbudgetbikes.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8964626","52.3720547"]
+			},
+			"properties":{
+				"title":"Green Budget Bikes (Red Light District area)",
+				"address":"Oudezijds Voorburgwal 167hs  1012 ET Amsterdam",
+				"phone":"+31 (0)20 370 0616",
+				"url":"greenbudgetbikes.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8770842","52.3630882"]
+			},
+			"properties":{
+				"title":"Dutch Bike",
+				"address":"OVERTOOM 45 1054 HB AMSTERDAM",
+				"phone":"020-6833369",
+				"url":"dutchbikeamsterdam.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8938071","52.3660033"]
+			},
+			"properties":{
+				"title":"BetterBike",
+				"address":"Reguliersdwarsstraat 97  1017 BK Amsterdam",
+				"phone":"+31 20 303 0370",
+				"url":"betterbike.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8890445","52.3709721"]
+			},
+			"properties":{
+				"title":"TopBike4You",
+				"address":"Spuistraat 242 1012 VV Amsterdam",
+				"phone":"+31(0)6 48 52 43 10",
+				"url":"topbike4you.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.8913727","52.3754937"]
+			},
+			"properties":{
+				"title":"Recycled Rentals",
+				"address":"Spuistraat 84 A Amsterdam",
+				"phone":"0031 [0] 685059329",
+				"url":"recycledrentals.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.890692","52.3797107"]
+			},
+			"properties":{
+				"title":"Frederic Rentabike",
+				"address":"Brouwersgracht 78 Amsterdam",
+				"phone":"00 31 20 6245509",
+				"url":"frederic.nl",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		},
+		{
+			"type":"Feature",
+			"geometry":{
+				"type":"Point",
+				"coordinates":["4.9346744","52.3918629"]
+			},
+			"properties":{
+				"title":"Amsterdam Rent a Bike",
+				"address":"Meerpad 2, 1025LB Amsterdam",
+				"phone":"+31(0)613-99 86 75",
+				"url":"amsterdamrentabike.com",
+				"marker-size":"large",
+				"marker-color":"#000",
+				"marker-symbol":"bicycle"
+			}
+		}
+	]
+}
