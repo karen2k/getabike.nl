@@ -6,7 +6,7 @@
   map = L.mapbox.map('map', 'karenishe.map-pxxvu0dq', {
     detectRetina: true,
     retinaVersion: 'karenishe.map-2s2oc75l'
-  });
+  }).addControl(L.mapbox.shareControl()).addControl(L.mapbox.geocoderControl('karenishe.map-pxxvu0dq'));
 
   meMarker = null;
 
