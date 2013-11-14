@@ -27,9 +27,19 @@ html
 
 	body
 		#map
+		
+		footer
+			div.fb-like(data-href='http://getabike.nl', data-layout='button_count', data-action='like', data-show-faces='false', data-share='false')
+			a.twitter-share-button(href='https://twitter.com/share', data-url='http://getabike.nl', data-text='Bike rental in Amsterdam')
+			script.
+				!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 
 		//- +js('//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js')
 		+js('http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js')
 		+js('js/main.js')
 
 		<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter22970497 = new Ya.Metrika({id:22970497, trackLinks:true, accurateTrackBounce:true, trackHash:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/22970497" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+
+		div#fb-root
+		script.
+			(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=234842806679192";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));

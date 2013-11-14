@@ -41,3 +41,25 @@ iframe.iframe{
 	height:1px;
 	float:left;
 }
+
+footer{
+	position:absolute;
+	bottom:20px;
+	width:200px;
+	height:20px;
+	line-height:20px;
+	left:50%;
+	margin-left:-100px;
+	text-align:center;
+	z-index:2;
+	background:rgba(0, 0, 0, .7);
+	padding:5px 0;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.twitter-share-button{
+	margin-left:10px;
+	width:76px !important;
+}
