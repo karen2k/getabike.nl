@@ -2,56 +2,6 @@ DAM_SQUARE = lat: 52.373, lng: 4.893
 DEFAULT_MAGNIFICATION = 14
 MAX_DISTANCE = 12 # km
 
-map = L.mapbox.map 'map', 'karenishe.map-pxxvu0dq',
-	detectRetina: true
-	retinaVersion: 'karenishe.map-2s2oc75l'
-# .addControl(L.mapbox.shareControl())
-.addControl(L.mapbox.geocoderControl('karenishe.map-pxxvu0dq'))
-
-meMarker = null
-
-if navigator.geolocation
-	map.on 'locationfound', (e) =>
-
-		# if not too far from Amsterdam
-		# if Math.abs(e.latitude - 52.373) < .1 and Math.abs(e.longitude - 4.893) < .1
-		if coordinatesInAms(e.latlng)
-			# set map to bounds
-			map.fitBounds e.bounds
-			# locate user position marker
-			centerMap e.latlng
-		else
-			centerMap DAM_SQUARE
-
-	# if browser can't locate user
-	map.on 'locationerror', () =>
-		centerMap DAM_SQUARE
-		# alert 'Enable geolocation service for your browser please'
-
-	map.locate()
-else
-	# set map to Amsterdam
-	map.setView [DAM_SQUARE.lat, DAM_SQUARE.lng], DEFAULT_MAGNIFICATION
-
-
-L.mapbox.markerLayer()
-	.addTo(map)
-	.on 'ready', (e) ->
-		e.target.eachLayer (marker) ->
-			content =
-				"<h1>#{marker.feature.properties.title}</h1>" +
-				(if marker.feature.properties.address then "<p class='address'>#{marker.feature.properties.address}</p>" else '') +
-				(if marker.feature.properties.phone then "<p class='phone'>#{marker.feature.properties.phone}</p>" else '') +
-				(if marker.feature.properties.url then "<a href='http://#{marker.feature.properties.url}' target='_blank' class='url'>www.#{marker.feature.properties.url}</a>" else '') +
-				"<iframe src='marker_counter.html?marker_id=#{marker.feature.properties.id}' class='iframe'></iframe>"
-				# + "<a href='#' class='route' data-lat='#{marker.feature.geometry.coordinates[1]}' data-lng='#{marker.feature.geometry.coordinates[0]}'>Walking route</a>"
-			# marker.
-			marker.bindPopup content,
-				closeButton: true
-				maxWidth: 200
-	.loadURL('markers.geojson')
-
-
 # Old-fashined great-circle calculator based off of
 # the Soviet spheroid formulae. Totally certain you can find this
 # elsewhere and plug it in, but I already had it in my attic
@@ -89,6 +39,60 @@ centerMap = (latlon) =>
 		draggable: true
 	)
 	meMarker.addTo map
+	
+	
+
+
+map = L.mapbox.map 'map', 'karenishe.map-pxxvu0dq',
+	detectRetina: true
+	retinaVersion: 'karenishe.map-2s2oc75l'
+# .addControl(L.mapbox.shareControl())
+.addControl(L.mapbox.geocoderControl('karenishe.map-pxxvu0dq'))
+
+meMarker = null
+
+if navigator.geolocation
+	map.on 'locationfound', (e) =>
+
+		# if not too far from Amsterdam
+		# if Math.abs(e.latitude - 52.373) < .1 and Math.abs(e.longitude - 4.893) < .1
+		if coordinatesInAms(e.latlng)
+			# set map to bounds
+			map.fitBounds e.bounds
+			# locate user position marker
+			centerMap e.latlng
+		else
+			centerMap DAM_SQUARE
+
+	# if browser can't locate user
+	map.on 'locationerror', () =>
+		centerMap DAM_SQUARE
+		# alert 'Enable geolocation service for your browser please'
+
+	map.locate()
+else
+	# set map to Amsterdam
+	map.setView [DAM_SQUARE.lat, DAM_SQUARE.lng], DEFAULT_MAGNIFICATION
+
+
+rentalTemplateFn = Handlebars.compile($("#rentaltpl").html())
+
+L.mapbox.markerLayer()
+	.addTo(map)
+	.on 'ready', (e) ->
+		e.target.eachLayer (marker) ->
+			content = rentalTemplateFn(marker.feature.properties)
+				# "<h1>#{marker.feature.properties.title}</h1>" +
+				# (if marker.feature.properties.address then "<p class='address'>#{marker.feature.properties.address}</p>" else '') +
+				# (if marker.feature.properties.phone then "<p class='phone'>#{marker.feature.properties.phone}</p>" else '') +
+				# (if marker.feature.properties.url then "<a href='http://#{marker.feature.properties.url}' target='_blank' class='url'>www.#{marker.feature.properties.url}</a>" else '') +
+				# "<iframe src='marker_counter.html?marker_id=#{marker.feature.properties.id}' class='iframe'></iframe>"
+				# # + "<a href='#' class='route' data-lat='#{marker.feature.geometry.coordinates[1]}' data-lng='#{marker.feature.geometry.coordinates[0]}'>Walking route</a>"
+			# marker.
+			marker.bindPopup content,
+				closeButton: true
+				maxWidth: 200
+	.loadURL('markers.geojson')
 
 
 
