@@ -4,7 +4,7 @@ body{
 }
 #map{
 	position:absolute;
-	top:0;
+	top: 20px; /* Make some room for the top bar */
 	bottom:0;
 	width:100%;
 }
@@ -40,6 +40,20 @@ iframe.iframe{
 	width:1px;
 	height:1px;
 	float:left;
+}
+
+header {
+	height:19px;
+	width:100%;
+	z-index: 1000;
+	border-bottom: 1px solid rgb(187, 187, 187);
+}
+
+header h1 {
+	text-indent: -100em;
+	margin: 0 7px; /* lines up with the mapbox zoom controls */
+	background: url('/img/logo-horizontal.svg') no-repeat 0px 3px; 
+	background-size: 92px;
 }
 
 footer{
