@@ -27,29 +27,29 @@ GreatCircle =
     Math.acos(cosDist) * @R_KAVRAISKOGO
 
 coordinatesInAms = (latlon)->
-	distance = GreatCircle.distance(latlon.lat, latlon.lng, DAM_SQUARE.lat, DAM_SQUARE.lng)
-	# console.debug "#{distance}km from Dam Square ;-)"
-	distance < MAX_DISTANCE
+  distance = GreatCircle.distance(latlon.lat, latlon.lng, DAM_SQUARE.lat, DAM_SQUARE.lng)
+  # console.debug "#{distance}km from Dam Square ;-)"
+  distance < MAX_DISTANCE
 
 centerAndFitMap = (latlon, closestMarkers) =>
-	meMarker = L.marker(new L.LatLng(latlon.lat, latlon.lng),
-		icon: L.mapbox.marker.icon
-			'marker-color': 'bb0000'
-			'marker-symbol': 'star-stroked'
-			"marker-size": 'large'
-		draggable: true
-	)
+  meMarker = L.marker(new L.LatLng(latlon.lat, latlon.lng),
+    icon: L.mapbox.marker.icon
+      'marker-color': 'bb0000'
+      'marker-symbol': 'star-stroked'
+      "marker-size": 'large'
+    draggable: true
+  )
 
-	meMarker.addTo map
-	closestMarkers.push(meMarker)
-	interestAreaGrp = new L.featureGroup(closestMarkers)
-	map.fitBounds(interestAreaGrp, paddingTopLeft: [3, 3], paddingBottomRight: [3, 3])
-	
+  meMarker.addTo map
+  closestMarkers.push(meMarker)
+  interestAreaGrp = new L.featureGroup(closestMarkers)
+  map.fitBounds(interestAreaGrp, paddingTopLeft: [3, 3], paddingBottomRight: [3, 3])
+  
 myPosition = DAM_SQUARE
 
 map = L.mapbox.map 'map', 'karenishe.map-pxxvu0dq',
-	detectRetina: true
-	retinaVersion: 'karenishe.map-2s2oc75l'
+  detectRetina: true
+  retinaVersion: 'karenishe.map-2s2oc75l'
 # .addControl(L.mapbox.shareControl())
 .addControl(L.mapbox.geocoderControl('karenishe.map-pxxvu0dq'))
 
@@ -62,60 +62,60 @@ rentalTemplateFn = Handlebars.compile($("#rentaltpl").html())
 # that will be called once an approximate location becomes available
 # or once geolocation fails
 locateUser = (fnOnceComplete)->
-	if navigator.geolocation
-		map.on 'locationfound', (e) =>
-			# if not too far from Amsterdam
-			if coordinatesInAms(e.latlng)
-				# locate user position marker
-				myPosition = e.latlng
-				console.debug 'User totally located, fitting'
-				fnOnceComplete()
-			else
-				console.debug "Person not even close to AMS"
-				fnOnceComplete()
-				
-		# if browser can't locate user
-		map.on 'locationerror', =>
-			console.error 'Geolocation off or declined'
-			fnOnceComplete()
-			
-		map.locate()
-	else
-		console.error "No location support"
-		fnOnceComplete()
+  if navigator.geolocation
+    map.on 'locationfound', (e) =>
+      # if not too far from Amsterdam
+      if coordinatesInAms(e.latlng)
+        # locate user position marker
+        myPosition = e.latlng
+        console.debug 'User totally located, fitting'
+        fnOnceComplete()
+      else
+        console.debug "Person not even close to AMS"
+        fnOnceComplete()
+        
+    # if browser can't locate user
+    map.on 'locationerror', =>
+      console.error 'Geolocation off or declined'
+      fnOnceComplete()
+      
+    map.locate()
+  else
+    console.error "No location support"
+    fnOnceComplete()
 
 # Sort the passed markers by their distance to myPosition
 sortMarkersByDistance = (markers)->
-	# Compute the distance to that rental from me
-	for marker in markers
-		markerCoords = marker.getLatLng()
-		marker._distance = GreatCircle.distance(myPosition.lat, myPosition.lng, markerCoords.lat, markerCoords.lng)
-		
-	# Sort markers by distance
-	# One of those moments where having Underscore is actually useful
-	markers.sort (a, b)->
-		return -1 if a._distance < b._distance 
-		return 1 if a._distance > b._distance 
-		0
-	
+  # Compute the distance to that rental from me
+  for marker in markers
+    markerCoords = marker.getLatLng()
+    marker._distance = GreatCircle.distance(myPosition.lat, myPosition.lng, markerCoords.lat, markerCoords.lng)
+    
+  # Sort markers by distance
+  # One of those moments where having Underscore is actually useful
+  markers.sort (a, b)->
+    return -1 if a._distance < b._distance 
+    return 1 if a._distance > b._distance 
+    0
+  
 # Once the rentals are loaded, populate the map
 populateMap = (e) ->
-	allRentalMarkers = []
-	
-	e.target.eachLayer (marker) ->
-		allRentalMarkers.push(marker)
-		content = rentalTemplateFn(marker.feature.properties)
-		marker.bindPopup content, closeButton: true, maxWidth: 200
-	
-	locateUser ->
-		sortMarkersByDistance(allRentalMarkers)
-		# Grab the FIT_N_RENTALS closest rentals and add them to the fitting group
-		closestRentals = allRentalMarkers[..FIT_N_RENTALS]
-	  # and center the map to them + the user location
-		centerAndFitMap myPosition, closestRentals
-	
+  allRentalMarkers = []
+  
+  e.target.eachLayer (marker) ->
+    allRentalMarkers.push(marker)
+    content = rentalTemplateFn(marker.feature.properties)
+    marker.bindPopup content, closeButton: true, maxWidth: 200
+  
+  locateUser ->
+    sortMarkersByDistance(allRentalMarkers)
+    # Grab the FIT_N_RENTALS closest rentals and add them to the fitting group
+    closestRentals = allRentalMarkers[..FIT_N_RENTALS]
+    # and center the map to them + the user location
+    centerAndFitMap myPosition, closestRentals
+  
 # Load the markers
 L.mapbox.markerLayer()
-	.addTo(map)
-	.on('ready', populateMap)
-	.loadURL('markers.geojson')
+  .addTo(map)
+  .on('ready', populateMap)
+  .loadURL('markers.geojson')
