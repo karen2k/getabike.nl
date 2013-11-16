@@ -1,6 +1,7 @@
 DAM_SQUARE = lat: 52.373, lng: 4.893
 DEFAULT_MAGNIFICATION = 14
 MAX_DISTANCE = 12 # km
+FIT_N_RENTALS = 2
 
 # Old-fashined great-circle calculator based off of
 # the Soviet spheroid formulae. Totally certain you can find this
@@ -23,14 +24,14 @@ GreatCircle =
     lon2 = @deg2rad(lon2)
     deltaL = lon1 - lon2
     cosDist = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(deltaL)
-    Math.round(Math.acos(cosDist) * @R_KAVRAISKOGO)
+    Math.acos(cosDist) * @R_KAVRAISKOGO
 
 coordinatesInAms = (latlon)->
 	distance = GreatCircle.distance(latlon.lat, latlon.lng, DAM_SQUARE.lat, DAM_SQUARE.lng)
 	# console.debug "#{distance}km from Dam Square ;-)"
 	distance < MAX_DISTANCE
 
-centerMap = (latlon) =>
+centerAndFitMap = (latlon, closestMarkers) =>
 	meMarker = L.marker(new L.LatLng(latlon.lat, latlon.lng),
 		icon: L.mapbox.marker.icon
 			'marker-color': 'bb0000'
@@ -38,10 +39,13 @@ centerMap = (latlon) =>
 			"marker-size": 'large'
 		draggable: true
 	)
-	meMarker.addTo map
-	
-	
 
+	meMarker.addTo map
+	closestMarkers.push(meMarker)
+	interestAreaGrp = new L.featureGroup(closestMarkers)
+	map.fitBounds(interestAreaGrp, paddingTopLeft: [3, 3], paddingBottomRight: [3, 3])
+	
+myPosition = DAM_SQUARE
 
 map = L.mapbox.map 'map', 'karenishe.map-pxxvu0dq',
 	detectRetina: true
@@ -51,77 +55,67 @@ map = L.mapbox.map 'map', 'karenishe.map-pxxvu0dq',
 
 meMarker = null
 
-if navigator.geolocation
-	map.on 'locationfound', (e) =>
-
-		# if not too far from Amsterdam
-		# if Math.abs(e.latitude - 52.373) < .1 and Math.abs(e.longitude - 4.893) < .1
-		if coordinatesInAms(e.latlng)
-			# set map to bounds
-			map.fitBounds e.bounds
-			# locate user position marker
-			centerMap e.latlng
-		else
-			centerMap DAM_SQUARE
-
-	# if browser can't locate user
-	map.on 'locationerror', () =>
-		centerMap DAM_SQUARE
-		# alert 'Enable geolocation service for your browser please'
-
-	map.locate()
-else
-	# set map to Amsterdam
-	map.setView [DAM_SQUARE.lat, DAM_SQUARE.lng], DEFAULT_MAGNIFICATION
-
-
 rentalTemplateFn = Handlebars.compile($("#rentaltpl").html())
 
+# Set myPosition either using geolocation or, if that fails,
+# assume the person is on the Dam Square for now. Receives a callback
+# that will be called once an approximate location becomes available
+# or once geolocation fails
+locateUser = (fnOnceComplete)->
+	if navigator.geolocation
+		map.on 'locationfound', (e) =>
+			# if not too far from Amsterdam
+			if coordinatesInAms(e.latlng)
+				# locate user position marker
+				myPosition = e.latlng
+				console.debug 'User totally located, fitting'
+				fnOnceComplete()
+			else
+				console.debug "Person not even close to AMS"
+				fnOnceComplete()
+				
+		# if browser can't locate user
+		map.on 'locationerror', =>
+			console.error 'Geolocation off or declined'
+			fnOnceComplete()
+			
+		map.locate()
+	else
+		console.error "No location support"
+		fnOnceComplete()
+
+# Sort the passed markers by their distance to myPosition
+sortMarkersByDistance = (markers)->
+	# Compute the distance to that rental from me
+	for marker in markers
+		markerCoords = marker.getLatLng()
+		marker._distance = GreatCircle.distance(myPosition.lat, myPosition.lng, markerCoords.lat, markerCoords.lng)
+		
+	# Sort markers by distance
+	# One of those moments where having Underscore is actually useful
+	markers.sort (a, b)->
+		return -1 if a._distance < b._distance 
+		return 1 if a._distance > b._distance 
+		0
+	
+# Once the rentals are loaded, populate the map
+populateMap = (e) ->
+	allRentalMarkers = []
+	
+	e.target.eachLayer (marker) ->
+		allRentalMarkers.push(marker)
+		content = rentalTemplateFn(marker.feature.properties)
+		marker.bindPopup content, closeButton: true, maxWidth: 200
+	
+	locateUser ->
+		sortMarkersByDistance(allRentalMarkers)
+		# Grab the FIT_N_RENTALS closest rentals and add them to the fitting group
+		closestRentals = allRentalMarkers[..FIT_N_RENTALS]
+	  # and center the map to them + the user location
+		centerAndFitMap myPosition, closestRentals
+	
+# Load the markers
 L.mapbox.markerLayer()
 	.addTo(map)
-	.on 'ready', (e) ->
-		e.target.eachLayer (marker) ->
-			content = rentalTemplateFn(marker.feature.properties)
-			marker.bindPopup content,
-				closeButton: true
-				maxWidth: 200
+	.on('ready', populateMap)
 	.loadURL('markers.geojson')
-
-
-
-# $(document).on 'click', 'a.route', (e) =>
-# 	$me = $(e.target)
-# 
-# 	myLatLng = meMarker.getLatLng()
-# 
-# 	$.ajax
-# 		url: 'directions'
-# 		type: 'post'
-# 		dataType: 'json'
-# 		data:
-# 			from_lat: myLatLng.lat
-# 			from_lng: myLatLng.lng
-# 			to_lat: $me.attr('data-lat')
-# 			to_lng: $me.attr('data-lng')
-# 		success: (response) =>
-# 			if response.status != 'OK'
-# 				alert "Can't get directions"
-# 				return false
-# 
-# 			response.routes[0]
-# 
-# 			console.log response.routes[0].bounds.northeast
-# 			console.log response.routes[0].bounds.southwest
-# 
-# 
-# 			bounds =
-# 				'_northEast': response.routes[0].bounds.northeast
-# 				'_southWest': response.routes[0].bounds.southwest
-# 			
-# 			map.fitBounds bounds
-# 
-# 			console.log response.routes[0]
-# 
-# 	false
-# 
-# 
