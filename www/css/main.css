@@ -78,3 +78,31 @@ footer{
 	margin-left:10px;
 	width:76px !important;
 }
+
+
+.directions_buttons{
+	height:18px;
+	font-weight:bold;
+	margin:5px 0 0 0;
+}
+
+.directions_button{
+	width:18px;
+	height:18px;
+	display:inline-block !important;
+	margin:0 5px -5px 0;
+	cursor:pointer;
+}
+
+.directions-bicycling{
+	background:url('../img/icons/bicycle-18.png');
+}
+.directions-transit{
+	background:url('../img/icons/bus-18.png');	
+}
+.directions-walking{
+	background:url('../img/icons/pitch-18.png');
+}
+.directions-driving{
+	background:url('../img/icons/car-18.png');
+}
