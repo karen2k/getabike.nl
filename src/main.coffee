@@ -62,7 +62,9 @@ rentalTemplateFn = Handlebars.compile($("#rentaltpl").html())
 # assume the person is on the Dam Square for now. Receives a callback
 # that will be called once an approximate location becomes available
 # or once geolocation fails
-locateUser = (fnOnceComplete)->
+locateUser = ->
+  promise = new $.Deferred()
+  
   if navigator.geolocation
     map.on 'locationfound', (e) =>
       # if not too far from Amsterdam
@@ -70,20 +72,21 @@ locateUser = (fnOnceComplete)->
         # locate user position marker
         myPosition = e.latlng
         console.debug 'User totally located, fitting'
-        fnOnceComplete()
+        promise.resolve()
       else
         console.debug "Person not even close to AMS"
-        fnOnceComplete()
+        promise.resolve()
         
     # if browser can't locate user
     map.on 'locationerror', =>
       console.error 'Geolocation off or declined'
-      fnOnceComplete()
+      promise.resolve()
       
     map.locate()
   else
     console.error "No location support"
-    fnOnceComplete()
+    promise.resolve()
+  promise
 
 # Sort the passed markers by their distance to myPosition
 sortMarkersByDistance = (markers)->
@@ -106,10 +109,11 @@ populateMap = (e) ->
   e.target.eachLayer (marker) ->
     allRentalMarkers.push(marker)
     content = rentalTemplateFn($.extend(marker.feature.properties, marker.feature.geometry))
-    # content = rentalTemplateFn(marker.feature.properties)
     marker.bindPopup content, closeButton: true, maxWidth: 200
-  
-  locateUser ->
+   
+  $.when(
+    locateUser()
+  ).then ->
     sortMarkersByDistance(allRentalMarkers)
     # Grab the FIT_N_RENTALS closest rentals and add them to the fitting group
     closestRentals = allRentalMarkers[..FIT_N_RENTALS]
