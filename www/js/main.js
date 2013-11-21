@@ -202,7 +202,7 @@
     });
   };
 
-  $(document).ready(function() {
+  $(function() {
     return initDirections();
   });
 

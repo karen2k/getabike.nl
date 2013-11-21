@@ -165,5 +165,5 @@ initDirections = ->
 		false
 
 
-$(document).ready ->
+$ ->
 	initDirections()
