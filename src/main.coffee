@@ -119,6 +119,8 @@ populateMap = (e) ->
     closestRentals = allRentalMarkers[..FIT_N_RENTALS]
     # and center the map to them + the user location
     centerAndFitMap myPosition, closestRentals
+    # prepare the directions machinery
+    initDirections()
   
 # Load the markers
 L.mapbox.markerLayer()
@@ -133,10 +135,6 @@ initDirections = ->
 	directionsPolylineOptions =
 		color: '#000'
 	getDirections = (coordinates, mode) ->
-		if !meMarker?
-			alert 'Wait please for geolocation'
-			return
-
 		switch mode
 			when 'bicycling' then mode = google.maps.TravelMode.BICYCLING
 			when 'transit' then mode = google.maps.TravelMode.TRANSIT
@@ -158,12 +156,8 @@ initDirections = ->
 				directionsPolyline = L.polyline(directionsPolylinePoints, directionsPolylineOptions).addTo(map)
 			else
 				alert 'Looks like it\'s not possible to get directions there :('
-	$(document).on 'click', '.directions_button', ->
+	$(document).on 'click', '.directions_button', (e)->
 		$me = $(this)
 		coordinates = $me.attr('data-coordinates').split ','
 		getDirections coordinates, $me.attr('data-mode')
-		false
-
-
-$ ->
-	initDirections()
+		e.preventDefault()

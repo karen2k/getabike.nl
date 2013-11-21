@@ -138,7 +138,8 @@
       var closestRentals;
       sortMarkersByDistance(allRentalMarkers);
       closestRentals = allRentalMarkers.slice(0, +FIT_N_RENTALS + 1 || 9e9);
-      return centerAndFitMap(myPosition, closestRentals);
+      centerAndFitMap(myPosition, closestRentals);
+      return initDirections();
     });
   };
 
@@ -153,10 +154,6 @@
     };
     getDirections = function(coordinates, mode) {
       var request;
-      if (meMarker == null) {
-        alert('Wait please for geolocation');
-        return;
-      }
       switch (mode) {
         case 'bicycling':
           mode = google.maps.TravelMode.BICYCLING;
@@ -193,17 +190,13 @@
         }
       });
     };
-    return $(document).on('click', '.directions_button', function() {
+    return $(document).on('click', '.directions_button', function(e) {
       var $me, coordinates;
       $me = $(this);
       coordinates = $me.attr('data-coordinates').split(',');
       getDirections(coordinates, $me.attr('data-mode'));
-      return false;
+      return e.preventDefault();
     });
   };
-
-  $(function() {
-    return initDirections();
-  });
 
 }).call(this);
