@@ -159,5 +159,10 @@ initDirections = ->
 	$(document).on 'click', '.directions_button', (e)->
 		$me = $(this)
 		coordinates = $me.attr('data-coordinates').split ','
-		getDirections coordinates, $me.attr('data-mode')
-		e.preventDefault()
+		if $me.hasClass 'directions-walking'
+			getDirections coordinates, $me.attr('data-mode')
+			e.preventDefault()
+		else
+			$me.attr 'target', '_blank' if isiOS
+			$me.attr 'href', "http://maps.#{if isiOS then 'apple' else 'google'}.com/?daddr=#{coordinates[1]},#{coordinates[0]}&saddr=#{meMarker._latlng.lat},#{meMarker._latlng.lng}"
+	isiOS = navigator.userAgent.match(/(iPod|iPhone|iPad)/)

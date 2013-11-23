@@ -36,10 +36,9 @@
       
       <div class='directions_buttons'>
        Directions:
-       <span target='_blank' class='url directions_button directions-bicycling' data-coordinates='{{coordinates}}' data-mode='bicycling'></span>
-       <span target='_blank' class='url directions_button directions-transit' data-coordinates='{{coordinates}}' data-mode='transit'></span>
-       <span target='_blank' class='url directions_button directions-walking' data-coordinates='{{coordinates}}' data-mode='walking'></span>
-       <span target='_blank' class='url directions_button directions-driving' data-coordinates='{{coordinates}}' data-mode='driving'></span>
+       <a href="#" class='url directions_button directions-walking' data-coordinates='{{coordinates}}' data-mode='walking'></a>
+       <a href="#" class='url directions_button directions-transit' data-coordinates='{{coordinates}}' data-mode='transit'></a>
+       <a href="#" class='url directions_button directions-driving' data-coordinates='{{coordinates}}' data-mode='driving'></a>
       </div>
       <iframe src='marker_counter.html?marker_id={{id}}' class='iframe'></iframe>
       
@@ -48,6 +47,6 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script><!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter22970497 = new Ya.Metrika({id:22970497, trackLinks:true, accurateTrackBounce:true, trackHash:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/22970497" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+    <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>
