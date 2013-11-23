@@ -163,6 +163,6 @@ initDirections = ->
 			getDirections coordinates, $me.attr('data-mode')
 			e.preventDefault()
 		else
-			$me.attr 'target', '_blank' if isiOS
+			$me.attr 'target', '_blank' if !isiOS
 			$me.attr 'href', "http://maps.#{if isiOS then 'apple' else 'google'}.com/?daddr=#{coordinates[1]},#{coordinates[0]}&saddr=#{meMarker._latlng.lat},#{meMarker._latlng.lng}"
 	isiOS = navigator.userAgent.match(/(iPod|iPhone|iPad)/)

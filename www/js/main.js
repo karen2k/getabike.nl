@@ -212,7 +212,7 @@
         getDirections(coordinates, $me.attr('data-mode'));
         return e.preventDefault();
       } else {
-        if (isiOS) {
+        if (!isiOS) {
           $me.attr('target', '_blank');
         }
         return $me.attr('href', "http://maps." + (isiOS ? 'apple' : 'google') + ".com/?daddr=" + coordinates[1] + "," + coordinates[0] + "&saddr=" + meMarker._latlng.lat + "," + meMarker._latlng.lng);
