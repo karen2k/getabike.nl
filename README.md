@@ -1,4 +1,4 @@
-# getabike
+# Get a Bike
 
 ### Bootstrapping data
 
