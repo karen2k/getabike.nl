@@ -1,9 +1,5 @@
-# Get a Bike
+## Get a Bike
 
-### Bootstrapping data
+<a href="http://getabike.nl" target="_blank">http://getabike.nl</a> – is a project about the best way to find a bike rental in Amsterdam.
 
-Basic data dump is already there in JSON form. Check out DB backups in /dumps/ folder.
-
-### Automatic bootstrap from CoffeeScript and Jade
-
-Run `guard` to automatically rebuild from the Jade templates and CoffeeScript sources.
+We used <a href="https://www.mapbox.com" target="_blank">MapBox</a> and <a href="https://www.cloudflare.com" target="_blank">CloudFlare</a>.
